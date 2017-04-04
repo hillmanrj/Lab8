@@ -1,4 +1,4 @@
-package Lab8;
+
 /*
  * LAb 8 starter code
  * Theater revenue problem
@@ -33,6 +33,7 @@ public class TheaterRevenueWindow extends JFrame {
         theaterRev = new TheaterRevenues();
         initalizeWindow();
         addButtonListener();
+
     }
 
     private void initalizeWindow()
@@ -49,6 +50,8 @@ public class TheaterRevenueWindow extends JFrame {
      */
     private void createDisplay()
     {
+        buildMenuBar();
+
         Font boldFont = new Font("Arial", Font.BOLD, 14);
         Font norFont = new Font("Verdana", Font.PLAIN, 4);
         // ticket panel
@@ -135,6 +138,7 @@ public class TheaterRevenueWindow extends JFrame {
         southPanel.add(totalNetRevTxt);
         //    southPanel.setBorder(BorderFactory.createEtchedBorder());
 
+
         this.getContentPane().add(southPanel,BorderLayout.SOUTH);
     }
 
@@ -143,14 +147,19 @@ public class TheaterRevenueWindow extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         // Call "buildFileMenu()" to create a menu and add it into the menu bar
-        JMenu fileMenu = buildFileMenu();
-        menuBar.add(fileMenu);
+        //JMenu fileMenu = buildFileMenu();
+        //menuBar.add(fileMenu);
 
         Label whiteSpace = new Label("                        ");
         menuBar.add(whiteSpace);
 
+        JMenu mnFile = buildFileMenu();
+        menuBar.add(mnFile);
+
         JMenu mnHelp = buildHelpMenu();
         menuBar.add(mnHelp);
+
+        setJMenuBar(menuBar);
 
         return menuBar;
     }
@@ -171,7 +180,7 @@ public class TheaterRevenueWindow extends JFrame {
         MyListener helpListener = new MyListener();
         helpMenuItem.addActionListener(helpListener);
         aboutMenuItem.addActionListener(helpListener);
-        exitMenuItem.addActionListener(helpListener);
+        //exitMenuItem.addActionListener(helpListener);
 
         return helpMenu;
     }
@@ -181,18 +190,19 @@ public class TheaterRevenueWindow extends JFrame {
         JMenu fileMenu = new JMenu("File");
 
         // Create the menu items
-        aboutMenuItem = new JMenuItem("This program calculate how much total gross and net revenue is created from the " +
+        aboutMenuItem = new JMenuItem("This program calculate how much total gross " +
+                "and net revenue is created from the " +
                 "sales of adult and child tickets");
 
         // Add these menu items into fileMenu
         fileMenu.add(aboutMenuItem);
         fileMenu.addSeparator();
-        fileMenu.add(exitMenuItem);
+        //fileMenu.add(exitMenuItem);
 
         // Hook up the menu items with the listener
         MyListener listener = new MyListener();
-        exitMenuItem.addActionListener(listener);
         aboutMenuItem.addActionListener(listener);
+        //exitMenuItem.addActionListener(listener);
 
         return fileMenu;
     }
@@ -444,6 +454,7 @@ public class TheaterRevenueWindow extends JFrame {
     }
     public static void main(String[] agrs) {
         TheaterRevenueWindow trw = new TheaterRevenueWindow();
+
     }
 
 }
